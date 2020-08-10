@@ -12,7 +12,6 @@ class Solution {
 public:
     vector<int> findDisappearedNumbers(vector<int>& nums) {
         auto *result = new vector<int>;
-        auto *mSet = new set<int>;
         for(int i = 1; i <= nums.size(); i ++) {
             if (!mSet->count(i)) {
                 result->push_back(i);
