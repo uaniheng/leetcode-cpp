@@ -1,18 +1,26 @@
 //
-// Created by gyc on 2020/8/5.
+// Created by 陈肯 on 2020/8/31.
 //
-#include <iostream>
-#include <stack>
+#include<iostream>
 
-using namespace std;
-int main() {
+void copyArray(int * a,int * b);
 
-    for(int i = 0; i < 5; i ++) {
-        //int arr[2]{i, i + 1};
-        int *arr = new int[2]{i, i + 1};
-        cout << arr << endl;
-        delete[] arr;
+int main(){
+    using namespace std;
+    int rawarray[10]={2,3,4,5,6,11,23,45,7,1};
+    int coppyarray[10]={};
+    copyArray(rawarray,coppyarray);
+    for(int i=0;i<10;i++){
+        cout<<coppyarray[i]<<endl;
     }
-    return 0;
 }
 
+void copyArray(int *a,int *b){
+    for(int i=0;i<10;i++){
+        b[i]=a[i];
+    }
+
+
+
+
+};
