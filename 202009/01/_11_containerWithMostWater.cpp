@@ -21,9 +21,7 @@ public:
                 }
             }
         }
-
         return maxArea;
-
     }
 };
 
