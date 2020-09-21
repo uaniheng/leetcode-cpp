@@ -32,5 +32,4 @@ int main() {
 
     auto vec = new vector<int>{2};
     cout << Solution().coinChange(*vec, 3);
-
 }
