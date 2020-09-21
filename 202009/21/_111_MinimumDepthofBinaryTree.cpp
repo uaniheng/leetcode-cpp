@@ -16,17 +16,32 @@ class Solution {
 
 public:
     int minDepth(TreeNode *root) {
-        if (root == nullptr){
+
+        if (root == nullptr) {
             return 0;
         }
-        if (root->left != nullptr && root->right != nullptr) {
-            return min(minDepth(root->left), minDepth(root->right)) + 1;
-        } else {
-            if (root->left != nullptr) {
-                return minDepth(root->left) + 1;
+        int depth = 0;
+        queue<TreeNode *> queue{};
+
+        queue.push(root);
+        while (!queue.empty()) {
+            depth ++;
+            int size = queue.size();
+            for(int i = 0; i < size; i++) {
+                auto node = queue.front();
+                queue.pop();
+                if (node->left == nullptr && node->right == nullptr) {
+                    return depth;
+                }
+                if (node->left != nullptr) {
+                    queue.push(node->left);
+                }
+                if (node->right != nullptr) {
+                    queue.push(node->right);
+                }
             }
-            return minDepth(root->right) + 1;
         }
+        return 0;
     }
 };
 
@@ -39,9 +54,9 @@ int main() {
     auto t5 = new TreeNode(7);
 
     t1->left = t2;
-//    t1->right = t3;
-//    t3->left = t4;
-//    t3->right = t5;
+    t1->right = t3;
+    t3->left = t4;
+    t3->right = t5;
 
     cout << Solution().minDepth(t1) << endl;
 }
