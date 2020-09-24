@@ -13,28 +13,34 @@ public:
         string res;
 
         map<char, int> needs{};
+        map<char, int> window{};
+        int match = 0;
 
         for (char c: t) { needs[c]++; }
 
-        for (int i = 0; i < s.size(); i++) {
-            int match = 0;
-            map<char, int> window{};
-            for (int j = i; j < s.size(); j++) {
-                if (needs.count(s[j])) {
-                    window[s[j]]++;
-                    if (window[s[j]] == needs[s[j]]) {
-                        match ++;
-                    }
-                }
-                if (match == needs.size()) {
-                    int len = j - i + 1;
-                    if (len < minLen) {
-                        minLen = len;
-                        res = s.substr(i, len);
-                    }
-                    break;
+        int left = 0, right = 0;
+        while (right < s.size()) {
+            if (needs.count(s[right])) {
+                window[s[right]] ++;
+                if (window[s[right]] == needs[s[right]]) {
+                    match ++;
                 }
             }
+            while (match == needs.size() && left <= right) {
+                int len = right - left + 1;
+                if (len < minLen) {
+                    minLen = len;
+                    res = s.substr(left, len);
+                }
+                if (window.count(s[left])) {
+                    window[s[left]] --;
+                    if (window[s[left]] < needs[s[left]]) {
+                        match --;
+                    }
+                }
+                left ++;
+            }
+            right ++;
         }
         return res;
     }
@@ -42,7 +48,7 @@ public:
 
 int main() {
 
-    string s = "a", t = "a";
+    string s = "ADOBECODEBANC", t = "ABC";
 
     cout << Solution().minWindow(s, t) << endl;
 }
