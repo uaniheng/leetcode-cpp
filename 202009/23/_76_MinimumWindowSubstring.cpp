@@ -26,7 +26,7 @@ public:
                     match ++;
                 }
             }
-            while (match == needs.size() && left <= right) {
+            while (match == needs.size()) {
                 int len = right - left + 1;
                 if (len < minLen) {
                     minLen = len;
