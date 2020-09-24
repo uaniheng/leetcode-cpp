@@ -12,8 +12,8 @@ public:
         int minLen = s.size() + 1;
         string res;
 
-        map<char, int> needs{};
-        map<char, int> window{};
+        unordered_map<char, int> needs{};
+        unordered_map<char, int> window{};
         int match = 0;
 
         for (char c: t) { needs[c]++; }
