@@ -6,21 +6,21 @@
 class Solution {
 
 private:
-    unordered_map<TreeNode*, int> note{};
+    int *dp(TreeNode *root) {
+        if (root == nullptr) return new int[]{0, 0};
+        int *left = dp(root->left);
+        int *right = dp(root->right);
+        int curr = root->val + left[1] + right[1];
+        int next = max(left[0], left[1]) + max(right[0], right[1]);
+        delete [] left;
+        delete [] right;
+        return new int[]{curr, next};
+    }
 
 public:
     int rob(TreeNode *root) {
-
-        if (root == nullptr) return 0;
-        if (note.count(root)) return note[root];
-        int curr = root->val
-                + (root->left == nullptr ? 0:rob(root->left->left) + rob(root->left->right))
-                + (root->right == nullptr ? 0:rob(root->right->left) + rob(root->right->right));
-        int next = rob(root->left) + rob(root->right);
-
-        int res = max(curr, next);
-        note[root] = res;
-        return res;
+        int* res = dp(root);
+        return max(res[0], res[1]);
     }
 };
 
