@@ -9,14 +9,15 @@ public:
 
         int n = prices.size();
         if (n == 0) return n;
-        int dp[n][2];
-        dp[0][1] = -prices[0];
-        dp[0][0] = 0;
+
+        int profit0 = 0, profit1 = -prices[0], profitPre0 = 0;
         for (int i = 1;i < n; i ++) {
-            dp[i][0] = max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
-            dp[i][1] = max(dp[i - 1][1], (i > 2 ? dp[i - 2][0] : 0) - prices[i]);
+            int temp = profit0;
+            profit0 = max(profit0, profit1 + prices[i]);
+            profit1 = max(profit1, profitPre0 - prices[i]);
+            profitPre0 = temp;
         }
-        return dp[n - 1][0];
+        return profit0;
     }
 };
 
