@@ -7,23 +7,18 @@
 class Solution {
 public:
     int rob(vector<int>& nums) {
-        int n = nums.size();
-        if (n == 0) return 0;
-        int dp[n + 1];
-        dp[n - 1] = nums[n - 1];
-        dp[n] = 0;
-
-        for(int i = n - 2; i >=0; i --) {
-            dp[i] = max(dp[i + 1], nums[i] + dp[i + 2]);
+        int pre0 = 0, pre1 = 0, temp;
+        for(int n: nums) {
+            temp = pre1;
+            pre1 = max(n + pre0, pre1);
+            pre0 = temp;
         }
-        return dp[0];
+        return pre1;
     }
 };
 
 int main() {
 
     vector<int> vec{1,2,3,1};
-
     cout << Solution().rob(vec) << endl;
-
 }
