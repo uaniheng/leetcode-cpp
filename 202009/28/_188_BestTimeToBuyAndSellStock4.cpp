@@ -26,24 +26,20 @@ public:
         int n = prices.size();
 
         //int dp[n][k + 1][2];
-        vector<vector<vector<int>>> dp(prices.size(), vector<vector<int>>(k + 1, vector<int>(2, 0)));
+        //vector<vector<vector<int>>> dp(prices.size(), vector<vector<int>>(k + 1, vector<int>(2, 0)));
+        int dp[k + 1][2];
         for (int i = 0; i <= k; i ++) {
-            dp[0][i][0] = 0;
-            dp[0][i][1] = -prices[0];
+            dp[i][0] = 0;
+            dp[i][1] = -prices[0];
         }
 
         for(int i = 1; i < n; i ++) {
             for(int j = k; j > 0; j --) {
-                cout << i << ";" << j << endl;
-                int t1 = max(dp[i - 1][j][0], dp[i - 1][j][1] + prices[i]);
-                dp[i][j][0] = t1;
-                cout << dp[i][j][0] << ",";
-                int t2 = max(dp[i - 1][j][1], dp[i - 1][j - 1][0] - prices[i]);
-                dp[i][j][1] = t2;
-                cout << dp[i][j][1] << endl;
+                dp[j][0] = max(dp[j][0], dp[j][1] + prices[i]);
+                dp[j][1] = max(dp[j][1], dp[j - 1][0] - prices[i]);
             }
         }
-        return dp[n - 1][k][0];
+        return dp[k][0];
     }
 };
 
