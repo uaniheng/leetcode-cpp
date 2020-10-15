@@ -30,7 +30,7 @@ private:
             if(broken > not_broken) {
                 hi = mid - 1;
                 res = min(res, broken + 1);
-            }else {
+            } else {
                 lo = mid + 1;
                 res = min(res, not_broken + 1);
             }
