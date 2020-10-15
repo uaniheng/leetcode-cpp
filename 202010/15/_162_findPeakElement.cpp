@@ -4,15 +4,21 @@
 #include "../../common.h"
 
 class Solution {
+private:
+
+    int search(vector<int>& nums, int l, int r) {
+        if(l == r) return l;
+        int mid = (l + r) / 2;
+        if(nums[mid]> nums[mid + 1]) {
+            return search(nums, l , mid);
+        }
+        return search(nums, mid + 1, r);
+    }
+
+
 public:
     int findPeakElement(vector<int>& nums) {
-        int peak = 0;
-        for(int i = 1; i < nums.size(); ++i) {
-            if (nums[i] > nums[peak]) {
-                peak = i;
-            }
-        }
-        return peak;
+        return search(nums, 0, nums.size() - 1);
     }
 };
 
