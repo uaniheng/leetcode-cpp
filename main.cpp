@@ -13,7 +13,7 @@ private:
 
 
     /* 是否可以在 board[row][col] 放置皇后？ */
-    bool isValid(vector<string>& board, int row, int col) {
+    bool isValid(vector<string> &board, int row, int col) {
         int n = board.size();
         // 检查列是否有皇后互相冲突
         for (int i = 0; i < n; i++) {
@@ -35,9 +35,9 @@ private:
 
 
     // 路径：board 中小于 row 的那些行都已经成功放置了皇后
-// 选择列表：第 row 行的所有列都是放置皇后的选择
-// 结束条件：row 超过 board 的最后一行
-    void backtrack(vector<string>& board, int row) {
+    // 选择列表：第 row 行的所有列都是放置皇后的选择
+    // 结束条件：row 超过 board 的最后一行
+    void backtrack(vector<string> &board, int row) {
         // 触发结束条件
         if (row == board.size()) {
             res.push_back(board);
@@ -68,9 +68,9 @@ public:
 };
 
 int main() {
-
+    pair<int, int> p{};
     auto res = Solution().solveNQueens(8);
-    for(vector<string> str: res) {
+    for (vector<string> str: res) {
         for (string row: str) {
             cout << row << endl;
         }
