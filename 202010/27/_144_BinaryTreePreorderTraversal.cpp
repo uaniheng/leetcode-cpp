@@ -5,21 +5,29 @@
 
 class Solution {
 
-private:
-    vector<int> res{};
-
-    void recursion(TreeNode *root) {
-
-        if (root == nullptr) return;
-        res.emplace_back(root->val);
-        recursion(root->left);
-        recursion(root->right);
-    }
-
 public:
     vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> res{};
+        if (nullptr == root) return res;
 
-        recursion(root);
+        stack<TreeNode*> ms{};
+
+        ms.emplace(root);
+
+        while (!ms.empty()) {
+
+            TreeNode *t = ms.top();
+            ms.pop();
+            res.emplace_back(t->val);
+
+            if (t->right != nullptr) {
+                ms.emplace(t->right);
+            }
+            if (t->left != nullptr) {
+                ms.emplace(t->left);
+            }
+        }
         return res;
+
     }
 };
