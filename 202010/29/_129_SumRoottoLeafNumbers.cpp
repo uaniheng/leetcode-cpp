@@ -6,21 +6,35 @@
 
 class Solution {
 
-private:
-
-    int dfs(TreeNode *root, int sum) {
-        if (root == nullptr) return 0;
-        sum = sum * 10 + root->val;
-        if (root->left == nullptr and root->right == nullptr) {
-            return sum;
-        }
-        return dfs(root->left, sum) + dfs(root->right, sum);
-    }
-
-
 public:
     int sumNumbers(TreeNode* root) {
-
-        return dfs(root, 0);
+        if (root == nullptr) {
+            return 0;
+        }
+        int sum = 0;
+        queue<TreeNode*> nodeQ{};
+        queue<int> numQ{};
+        nodeQ.emplace(root);
+        numQ.emplace(root->val);
+        while (!nodeQ.empty()) {
+            TreeNode *node = nodeQ.front();
+            nodeQ.pop();
+            int num = numQ.front();
+            numQ.pop();
+            TreeNode *left = node->left, *right = node->right;
+            if (left == nullptr and right == nullptr) {
+                sum += num;
+            }else {
+                if (left != nullptr) {
+                    nodeQ.emplace(left);
+                    numQ.emplace(num * 10 + left->val);
+                }
+                if (right != nullptr) {
+                    nodeQ.emplace(right);
+                    numQ.emplace(num * 10 + right->val);
+                }
+            }
+        }
+        return sum;
     }
 };
