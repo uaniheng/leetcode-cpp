@@ -6,6 +6,7 @@
 #define LEETCODE_COMMON_H
 
 #include <string>
+#include <cstring>
 #include <iostream>
 #include <vector>
 #include <queue>
