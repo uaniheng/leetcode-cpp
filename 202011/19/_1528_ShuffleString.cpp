@@ -7,11 +7,22 @@
 class Solution {
 public:
     string restoreString(string s, vector<int>& indices) {
-        string res(s.size(), 0);
-        for(int i = 0; i< s.size(); ++i) {
-            res[indices[i]] = s[i];
+
+        // 冒泡排序
+        for(int i = s.size(); i > 0; --i) {
+            for(int j = 0; j < i - 1; ++j) {
+                if(indices[j] > indices[j + 1]) {
+                    int t1 = indices[j];
+                    indices[j] = indices[j + 1];
+                    indices[j + 1] = t1;
+
+                    char t2 = s[j];
+                    s[j] = s[j + 1];
+                    s[j + 1] = t2;
+                }
+            }
         }
-        return res;
+        return s;
      }
 };
 
