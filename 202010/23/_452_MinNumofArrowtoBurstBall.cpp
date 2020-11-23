@@ -17,7 +17,7 @@ public:
 
         for(int i = 1; i < points.size(); ++i) {
 
-            if (points[i][0] >= min_end) {
+            if (points[i][0] > min_end) {
                 count ++;
                 min_end = points[i][1];
             }
