@@ -5,21 +5,29 @@
 #include "../../common.h"
 
 class Solution {
-public:
-    vector<int> sortArray(vector<int>& nums) {
 
-        int len = nums.size();
-        for(int i = 0; i < len - 1; ++i) {
-
-            int minIndex = i;
-            for(int j = i + 1; j < len; ++j) {
-                if(nums[j] < nums[minIndex]) {
-                    minIndex = j;
-                }
-            }
-            //swap(nums.begin() + i, nums.begin() + minIndex);
-            iter_swap(nums.begin() + i, nums.begin() + minIndex);
+private:
+    void randomized_quicksort(vector<int> &nums, int l, int r) {
+        if (l >= r) {
+            return;
         }
+        int i = rand() % (r - l + 1) + l;
+        swap(nums[i], nums[r]);
+        int smallIndex = l - 1;
+        for (int j = l; j < r; ++j) {
+            if (nums[j] < nums[r]) {
+                swap(nums[++smallIndex], nums[j]);
+            }
+        }
+        swap(nums[smallIndex + 1], nums[r]);
+        randomized_quicksort(nums, l, smallIndex);
+        randomized_quicksort(nums, smallIndex + 2, r);
+    }
+
+public:
+    vector<int> sortArray(vector<int> &nums) {
+        srand((unsigned) time(NULL));
+        randomized_quicksort(nums, 0, (int) nums.size() - 1);
         return nums;
     }
 };
