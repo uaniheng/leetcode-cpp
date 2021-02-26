@@ -13,9 +13,8 @@ private:
             return nullptr;
         }
         int lSize = 0;
-        while ((*inorder)[inBegin] != (*postorder)[postBegin + size - 1]) {
+        while (inorder[inBegin] != postorder[postBegin + size - 1]) {
             ++lSize;
-            ++inBegin;
         }
         auto *root = new TreeNode((*inorder)[inBegin]);
         root->left = build(inBegin - lSize, postBegin, lSize);
