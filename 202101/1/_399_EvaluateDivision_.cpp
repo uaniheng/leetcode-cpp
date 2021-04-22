@@ -73,12 +73,7 @@ public:
                 notes[e[1]] = id ++;
             }
             uf.unionNode(notes[e[0]], notes[e[1]], values[i]);
-            cout << e[0] << "->" << e[1] << endl;
-            cout << values[i] << endl;
-            cout << uf.isConnected(notes[e[0]], notes[e[1]]) << endl;
         }
-        cout << "a->c" << endl;
-        cout << uf.isConnected(notes["a"], notes["c"]) << endl;
         int m = queries.size();
         auto res = vector<double>( m);
         for(int i = 0; i < m; ++i) {
