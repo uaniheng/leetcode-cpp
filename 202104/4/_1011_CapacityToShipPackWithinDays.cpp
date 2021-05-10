@@ -1,12 +1,12 @@
 //
 // Created by gyc on 2021/4/26.
 //
-#include "../../common_c.h"
+#include "../../common.h"
 
 int shipWithinDays(int *weights, int weightsSize, int D) {
     int left = 0, right = 0;
     for (int i = 0; i < weightsSize; ++i) {
-        left = fmax(left, weights[i]);
+        left = max(left, weights[i]);
         right += weights[i];
     }
     while (left < right) {
