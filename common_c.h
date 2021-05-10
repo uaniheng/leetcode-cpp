@@ -12,4 +12,10 @@
 #include "uthash/utstring.h"
 #include "uthash/utarray.h"
 
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+};
+
 #endif //LEETCODE_COMMON_H
