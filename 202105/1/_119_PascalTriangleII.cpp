@@ -7,14 +7,13 @@
 class Solution {
 public:
     vector<int> getRow(int rowIndex) {
-        vector<vector<int>> c(rowIndex + 1);
-        for(int i = 0; i <=rowIndex; ++i) {
-            c[i].resize(i + 1);
-            c[i][0] = c[i][i] = 1;
-            for(int j = 1; j < i; ++j) {
-                c[i][j] = c[i - 1][j - 1] + c[i - 1][j];
+        vector<int> res(rowIndex + 1, 0);
+        res[0] = 1;
+        for(int i = 1; i <= rowIndex; ++i) {
+            for (int j = i; j > 0 ; --j) {
+                res[j] += res[j - 1];
             }
         }
-        return c[rowIndex];
+        return res;
     }
 };
