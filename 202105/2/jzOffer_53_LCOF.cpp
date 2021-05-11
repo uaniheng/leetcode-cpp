@@ -3,13 +3,19 @@
 //
 
 #include "../../common.h"
-#include <numeric>
 
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        int n = nums.size();
-        int totalSum = n * (n + 1) / 2;
-        return totalSum - accumulate(nums.begin(), nums.end(), 0);
+        int begin = 0, end = nums.size(), mid;
+        while (begin < end) {
+            mid = (begin + end) / 2;
+            if (nums[mid] == mid) {
+                begin = mid + 1;
+            }else {
+                end = mid;
+            }
+        }
+        return begin;
     }
 };
