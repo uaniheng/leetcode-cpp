@@ -10,7 +10,7 @@ public:
         for(int i = 1; i < nums.size(); ++i) {
             if (pre + nums[i] > nums[i]) {
                 pre = pre + nums[i];
-            } else{
+            } else {
                 pre = nums[i];
             }
             max1 = max(max1, pre);
