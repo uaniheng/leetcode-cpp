@@ -16,7 +16,7 @@ public:
         int sum = 0, i = 0;
         while (i < n - 2) {
             sum += arr[i++];
-            if (sum == target){
+            if (sum == target) {
                 break;
             }
         }
@@ -34,6 +34,6 @@ public:
 };
 
 int main() {
-    vector<int> v{18,12,-18,18,-19,-1,10,10};
+    vector<int> v{18, 12, -18, 18, -19, -1, 10, 10};
     cout << Solution().canThreePartsEqualSum(v) << endl;
 }
