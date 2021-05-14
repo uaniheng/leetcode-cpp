@@ -25,7 +25,7 @@ public:
             if (i == res.size() - 1 && res[i] == '0') {
                 continue;
             }
-            s += res[i];
+            s.push_back(res[i]);
         }
         return s;
     }
