@@ -7,12 +7,11 @@
 class Solution {
 public:
     int titleToNumber(string columnTitle) {
-        long sum = 0, factor = 1;
-        for (int i = columnTitle.size() - 1; i > -1; --i) {
-            sum += (columnTitle[i] - 'A' + 1) * factor;
-            factor *= 26;
+        int res = 0;
+        for(char c: columnTitle) {
+            res = res * 26 + (c - 'A' + 1);
         }
-        return sum;
+        return res;
     }
 };
 
