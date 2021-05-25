@@ -6,10 +6,20 @@
 class Solution {
 public:
     int mySqrt(int x) {
-        if (x == 0){
-            return 0;
+        long l = 0, r = x;
+        while(l <= r) {
+            long mid = l + (r - l) / 2;
+            long long pf = mid * mid;
+            if (pf <= x) {
+                l = mid + 1;
+            } else if (pf > x) {
+                r = mid - 1;
+            }
         }
-        int r = exp(0.5 * log(x));
-        return (long long)(r + 1) * (r + 1) <= x ? r + 1:r;
+        return r;
     }
 };
+
+int main() {
+    cout << Solution().mySqrt(4) << endl;
+}
